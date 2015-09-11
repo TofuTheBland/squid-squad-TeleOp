@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 
 /**
- * TODO Created by Quest Jelinek on 9/8/2015.
+ * TODO Created by Quest Jelinek on 9/8/2015. 
  * GitHub: TofuTheBland || https://github.com/TofuTheBland
  */
 public class TeleOp extends OpMode {
