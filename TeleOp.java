@@ -10,10 +10,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  */
 public class TeleOp extends OpMode {
     // TODO Initiate all variables
-    DcMotor motor_leftFront; //Forward Left
-    DcMotor motor_rightFront;
-    DcMotor motor_leftBack; //Backward Left
-    DcMotor motor_rightBack;
+    DcMotor motorL; //Forward Left
+    DcMotor motorR;
+
     Float driver_gamepad_x;
     Float driver_gamepad_y;
 
@@ -21,45 +20,46 @@ public class TeleOp extends OpMode {
     @Override
     public void init() {
         // TODO Placeholder for hardware mapping, motor names may change
-        motor_left = hardwareMap.dcMotor.get("motor_1");
-        motor_right = hardwareMap.dcMotor.get("motor_2");
+        motorL = hardwareMap.dcMotor.get("motorL");
+        motorR = hardwareMap.dcMotor.get("motorR");
 
         //Added this for the lads
-        driver_gamepad_x = gamepad1.left_stick_x;
-        driver_gamepad_y = gamepad1.left_stick_y;
+
     }
 
     public void forward() {
         //For the method .setPower() pass a value from -1 to 1 (inc. 0)
-        motor_left.setPower(1);
-        motor_right.setPower(1);
+        motorL.setPower(1);
+        motorR.setPower(1);
     }
     public void backward() {
         //For the method .setPower() pass a value from -1 to 1 (inc. 0)
-        motor_left.setPower(-1);
-        motor_right.setPower(-1);
+        motorL.setPower(-1);
+        motorR.setPower(-1);
     }
     public void left() {
         //For the method .setPower() pass a value from -1 to 1 (inc. 0)
-        motor_left.setPower(1);
-        motor_right.setPower(-1);
+        motorL.setPower(1);
+        motorR.setPower(-1);
     }
 
     public void right(){
-        motor_left.setPower(-1);
-        motor_left.setPower(1);
+        motorL.setPower(-1);
+        motorR.setPower(1);
     }
 
     @Override
     public void loop() {
+        driver_gamepad_x = gamepad1.left_stick_x;
+        driver_gamepad_y = gamepad1.left_stick_y;
 
-        if(driver_gamepad_y > 100) {forward();}
-        else if (driver_gamepad_y < -100) {backward();}
-        else if (driver_gamepad_x > 100) {left();}
-        else if (driver_gamepad_x < -100) {right();}
+        if(driver_gamepad_y > 0) {forward();}
+        else if (driver_gamepad_y < 0) {backward();}
+        else if (driver_gamepad_x > 0) {left();}
+        else if (driver_gamepad_x < 0) {right();}
         else {
-            motor_left.setPower(0);
-            motor_right.setPower(0);
+            motorL.setPower(0);
+            motorR.setPower(0);
         }
     }
 }
